@@ -27,3 +27,4 @@ male(lot).
 female(sarah).
 female(milcah).
 female(yiscah).
+
