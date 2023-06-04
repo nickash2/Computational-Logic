@@ -52,6 +52,57 @@ power(X, s(N), Y) :- even(s(N)), pow(X, N, Z), times(Z, Z, Y).
 power(X, s(N), Y) :- odd(s(N)), pow(X, N, Z), times(X, Z, Y).
 
 
+% member(X, L) is true if X is a member of the list L
+member(X, [X | _]).
+member(X, [_ | Tail]) :- member(X, Tail).
+
+% concat(L, X, Y) is true if L is the concatenation of lists X and Y
+concat([], X, X).
+concat([H | T], X, [H | Y]) :- concat(T, X, Y).
+
+% reverse(L, R) is true if R is the reversal of the list L
+reverse([], []).
+reverse([H | T], R) :- reverse(T, RevT), concat(RevT, [H], R).
+
+% palindrome(L) is true if L is a palindrome
+palindrome(L) :- reverse(L, L).
+
+connected(m, n).
+connected(m, i).
+connected(n, m).
+connected(i, m).
+connected(n, o).
+connected(o, n).
+connected(p, l).
+connected(j, f).
+connected(j, k).
+connected(k, j).
+connected(k, g).
+connected(l, p).
+connected(l, h).
+connected(e, f).
+connected(f, j).
+connected(f, b).
+connected(g, k).
+connected(g, c).
+connected(h, l).
+connected(h, d).
+connected(a, b).
+connected(b, f).
+connected(c, g).
+connected(d, h).
+connected(c, d).
+connected(d, c).
+
+% path(X, Y) is true if there is a path between X and Y
+
+path(X, Y) :- path_helper(X, Y, []).
+
+% path_helper(X, Y, Visited) is true if there is a path between X and Y, with the nodes in Visited already visited
+
+path_helper(X, Y, _) :- connected(X, Y).
+path_helper(X, Y, Visited) :- connected(X, Z), \+ member(Z, Visited), path_helper(Z, Y, [X | Visited]).
+
 
 
 
