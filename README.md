@@ -4,6 +4,7 @@ The following is an implementation of various local & adversial search algorithm
 
 ## Prerequisites:
 * Python >= 3.8
+* SWI-Prolog
 * Pylama ([Linting](https://code.visualstudio.com/docs/python/linting#:~:text=Linting%20highlights%20syntactical%20and%20stylistic,that%20can%20lead%20to%20errors.) Purposes)
 * [autopep8](https://pypi.org/project/autopep8/)
 
