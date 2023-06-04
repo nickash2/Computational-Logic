@@ -25,7 +25,10 @@ pow(X,s(Y),Z) :- pow(X,Y,Z1), times(X,Z1,Z).
 
 % even(X) is true if N is even
 
-even(X) :- mod(X,2) =:= 0.
+% even(X) is true if N is even
+even(0).
+even(s(s(X))) :- even(X).
+
 
 % odd(X) is true if N is odd
 
@@ -33,6 +36,23 @@ odd(X) :- mod(X,2) =\= 0.
 
 
 div2(N, D) :- plus(D, D, N).
+
+divi2(N,D) :- times(D,s(s(0)),N).
+
+log(X, B, N) :- pow(B, N, X).
+find_n(N) :- log(s(s(s(s(s(s(s(s(0)))))))),s(s(0)), N).
+
+fib(0, 0).
+fib(s(0), s(0)).
+fib(s(s(N)), Result) :- fib(s(N), F1), fib(N, F2), plus(F1, F2, Result).
+
+% power(X, N, Y) is true if X^N = Y
+power(X, 0, s(0)) :- isnumber(X).
+power(X, s(N), Y) :- even(s(N)), pow(X, N, Z), times(Z, Z, Y).
+power(X, s(N), Y) :- odd(s(N)), pow(X, N, Z), times(X, Z, Y).
+
+
+
 
 
 % Example queries:
