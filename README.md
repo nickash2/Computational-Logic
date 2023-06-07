@@ -10,7 +10,7 @@ The following is an implementation of various local & adversial search algorithm
 
 ## TODO List:
    
-- [ ] Implement Q2
+- [x] Implement Q2
 - [x] Implement Q3
 
 
