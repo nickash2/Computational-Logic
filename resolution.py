@@ -1,5 +1,5 @@
 #!/usr/bin/python
-
+import fileinput
 
 class Clause:
 	"""
@@ -257,7 +257,7 @@ def resolution(kb):
 	return kb
 
 
-def init():
+def init_ex():
 	"""
 	Makes an example hardcoded KB with clauses {~a,~b}, {a,~b,~c,~d}, {b,~d}, {c,~d}
 	"""
@@ -270,6 +270,26 @@ def init():
 	kb.append(Clause("d"))
 
 	return kb
+
+def init():
+	kb_text = ""
+	kb = []
+	with fileinput.input(files="ourmodel.txt") as f:
+		for line in f:
+			kb_text = line
+
+	modified = kb_text[4:-2].split("],")
+	res = [sub.strip("[") for sub in modified]
+	res2 = [sub.strip("]") for sub in res]
+	for clauses in range(len(res2)): 
+		kb.append(Clause(res2[clauses]))
+	
+	return kb
+	
+	
+ 
+	
+	
 
 
 ##
