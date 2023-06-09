@@ -1,0 +1,63 @@
+Complete input:  {'KB': ['p+(q*r) <=> (p+q)*(p+r)', 'p=>q <=> !p+q', 'p=>q', 'q=>r', 'p'], 'INFER': ['q', 'r', 'q*r', 'true']}
+Identifiers:  ['p', 'q', 'r']
+===============
+KB:
+((p + (q * r)) <=> ((p + q) * (p + r)))
+((p => q) <=> (!p + q))
+(p => q)
+(q => r)
+p
+
+INFER:
+q
+r
+(q * r)
+True
+===============
+
+
+ Model 1: {'p': False, 'q': False, 'r': False}
+     KB evaluates to:  False
+     INFER evaluates to:  False
+     KB entails INFER: False
+          Counterexample: p=False, q=False, r=False
+
+ Model 2: {'p': True, 'q': False, 'r': False}
+     KB evaluates to:  False
+     INFER evaluates to:  False
+     KB entails INFER: False
+          Counterexample: p=True, q=False, r=False
+
+ Model 3: {'p': False, 'q': True, 'r': False}
+     KB evaluates to:  False
+     INFER evaluates to:  False
+     KB entails INFER: False
+          Counterexample: p=False, q=True, r=False
+
+ Model 4: {'p': True, 'q': True, 'r': False}
+     KB evaluates to:  False
+     INFER evaluates to:  False
+     KB entails INFER: False
+          Counterexample: p=True, q=True, r=False
+
+ Model 5: {'p': False, 'q': False, 'r': True}
+     KB evaluates to:  False
+     INFER evaluates to:  False
+     KB entails INFER: False
+          Counterexample: p=False, q=False, r=True
+
+ Model 6: {'p': True, 'q': False, 'r': True}
+     KB evaluates to:  False
+     INFER evaluates to:  False
+     KB entails INFER: False
+          Counterexample: p=True, q=False, r=True
+
+ Model 7: {'p': False, 'q': True, 'r': True}
+     KB evaluates to:  False
+     INFER evaluates to:  True
+     KB entails INFER: True
+
+ Model 8: {'p': True, 'q': True, 'r': True}
+     KB evaluates to:  True
+     INFER evaluates to:  True
+     KB entails INFER: True

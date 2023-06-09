@@ -377,18 +377,38 @@ def evaluate_random_model():
 ##
 
 def check_all_models():
-    # This function should return True if KB entails INFER, otherwise it should return False
-    print("The function check_all_models is not implemented yet")
-    print("The goal of this pdf is to implement this yourself")
-    print("Currently, this function always returns True")
+    # This function checks for all models with all possible true/false values for every atom
+    num_identifiers = len(identifiers)
+    num_models = 2 ** num_identifiers
 
-    return True
+    for model_number in range(num_models):
+        model = {}
+
+        for i, identifier in enumerate(identifiers):
+            model[identifier] = bool((model_number >> i) & 1)
+
+        entails = evaluate_expression_set(infer, model)
+
+        print("\n",f"Model {model_number+1}:", model)      
+        kb_eval = evaluate_expression_set(kb, model)
+        infer_eval = evaluate_expression_set(infer, model)
+
+        print("     KB evaluates to: ", kb_eval)
+        print("     INFER evaluates to: ", infer_eval)
+        print (f"     KB entails INFER: {entails}")
+        if not entails:
+            # If the model does not satisfy KB, it does not entail INFER
+            counterexample = model.copy()
+            counterexample_str = ", ".join(f"{identifier}={value}" for identifier, value in counterexample.items())
+            print(f"          Counterexample: {counterexample_str}")
+
+    return False
 
 
 def main():
     parse_input()
     print_expression_sets()
-    evaluate_random_model()
+    #evaluate_random_model()
     check_all_models()
 
 
